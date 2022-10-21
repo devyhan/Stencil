@@ -49,10 +49,10 @@ extension Collection {
   }
 }
 
-class ExtendsNode: NodeType {
+public class ExtendsNode: NodeType {
   let templateName: Variable
   let blocks: [String: BlockNode]
-  let token: Token?
+  public let token: Token?
 
   class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
     let bits = token.components
@@ -80,7 +80,7 @@ class ExtendsNode: NodeType {
     self.token = token
   }
 
-  func render(_ context: Context) throws -> String {
+  public func render(_ context: Context) throws -> String {
     guard let templateName = try self.templateName.resolve(context) as? String else {
       throw TemplateSyntaxError("'\(self.templateName)' could not be resolved as a string")
     }
